@@ -1,7 +1,7 @@
 const {Page, Config} = require('vl-ui-core').Test;
-const VLSearchResults = require('../components/vl-search-results');
+const VlSearchResults = require('../components/vl-search-results');
 
-class VLSearchResultsPage extends Page {
+class VlSearchResultsPage extends Page {
   async getSearchResults() {
     return this._getSearchResults('vl-search-results');
   }
@@ -11,8 +11,8 @@ class VLSearchResultsPage extends Page {
   }
 
   async _getSearchResults(selector) {
-    return new VLSearchResults(this.driver, selector);
+    return new VlSearchResults(this.driver, selector);
   }
 }
 
-module.exports = VLSearchResultsPage;
+module.exports = VlSearchResultsPage;

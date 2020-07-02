@@ -1,7 +1,7 @@
 const {VlElement} = require('vl-ui-core').Test;
 const {By} = require('vl-ui-core').Test.Setup;
 
-class VLSearchResult extends VlElement {
+class VlSearchResult extends VlElement {
   async titleSlotElements() {
     return this._slotElements('title');
   }
@@ -46,4 +46,4 @@ class VlSearchResultContent extends VlElement {
   }
 }
 
-module.exports = VLSearchResult;
+module.exports = VlSearchResult;

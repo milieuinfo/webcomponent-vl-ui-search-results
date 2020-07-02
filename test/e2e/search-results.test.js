@@ -1,8 +1,8 @@
 const {assert, driver} = require('vl-ui-core').Test.Setup;
-const VLSearchResultsPage = require('./pages/vl-search-results.page');
+const VlSearchResultsPage = require('./pages/vl-search-results.page');
 
 describe('vl-search-results', async () => {
-  const vlSearchResultsPage = new VLSearchResultsPage(driver);
+  const vlSearchResultsPage = new VlSearchResultsPage(driver);
 
   before(() => {
     return vlSearchResultsPage.load();
