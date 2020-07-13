@@ -46,7 +46,6 @@ export class VlSearchResult extends vlElement(HTMLElement) {
   }
 
   connectedCallback() {
-    super.connectedCallback();
     this._setChildClasses();
   }
 
