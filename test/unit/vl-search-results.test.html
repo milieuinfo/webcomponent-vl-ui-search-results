@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../../web-component-tester/browser.js"></script>
+
+  <script type="module" src="../../src/vl-search-results.js"></script>
+  <script type="module" src="../../src/vl-search-result.js"></script>
+</head>
+
+<body>
+  <test-fixture id="vl-search-results-fixture">
+    <template>
+      <vl-search-results>
+        <vl-search-result></vl-search-result>
+        <vl-search-result></vl-search-result>
+      </vl-search-results>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('vl-search-results', () => {
+      const should = chai.should();
+
+      test('bevat een lijst element met daarin de search result elementen', () => {
+        const element = fixture('vl-search-results-fixture');
+        const ul = element.shadowRoot.querySelector('ul');
+        const elements = ul.querySelector('slot').assignedElements();
+        should.exist(ul);
+        assert.isTrue(ul.classList.contains('vl-search-results'));
+        assert.lengthOf(elements, 2);
+      });
+    });
+  </script>
+</body>
+
+</html>
