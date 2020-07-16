@@ -3,7 +3,11 @@ const VLSearchResults = require('../components/vl-search-results');
 
 class VLSearchResultsPage extends Page {
   async getSearchResults() {
-    return this._getSearchResults('vl-search-results');
+    return this._getSearchResults('#search-results');
+  }
+
+  async getSearchResultsText() {
+    return this._getSearchResults('#search-results-text');
   }
 
   async load() {

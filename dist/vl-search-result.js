@@ -61,10 +61,12 @@ export class VlSearchResult extends vlElement(HTMLElement) {
   }
 
   _setContentClasses() {
-    this._contentSlotElement.assignedElements().forEach((dl) => {
-      const dlClass = `${this._classPrefix}__description-list`;
-      dl.classList.add(dlClass);
-      dl.querySelectorAll('dt').forEach((dt) => dt.classList.add(`${dlClass}__description`));
+    this._contentSlotElement.assignedElements().forEach((element) => {
+      if (element instanceof HTMLDListElement) {
+        const dlClass = `${this._classPrefix}__description-list`;
+        element.classList.add(dlClass);
+        element.querySelectorAll('dt').forEach((dt) => dt.classList.add(`${dlClass}__description`));
+      }
     });
   }
 }
