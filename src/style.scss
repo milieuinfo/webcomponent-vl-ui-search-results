@@ -17,11 +17,3 @@
 // Components
 // ==========================================================================
 @import "vl-ui-search-results/src/scss/search-results";
-
-[slot="pre-content"] {
-    margin-bottom: 1.5rem
-}
-
-[slot="post-content"] {
-    margin-top: 1.5rem
-}

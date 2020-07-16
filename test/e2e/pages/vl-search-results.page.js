@@ -6,10 +6,6 @@ class VLSearchResultsPage extends Page {
     return this._getSearchResults('#search-results');
   }
 
-  async getSearchResultsText() {
-    return this._getSearchResults('#search-results-text');
-  }
-
   async load() {
     await super.load(Config.baseUrl + '/demo/vl-search-results.html');
   }
