@@ -26,7 +26,9 @@ export class VlSearchResult extends vlElement(HTMLElement) {
             <slot class="vl-search-result__meta-data" name="sub-title"></slot>
           </p>
           <div class="vl-search-result__content-group">
+            <slot name="pre-content"></slot>
             <slot name="content"></slot>
+            <slot name="post-content"></slot>
           </div>
         </section>
       </li>
