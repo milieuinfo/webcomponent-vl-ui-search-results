@@ -10,14 +10,6 @@ class VLSearchResult extends VlElement {
     return this._slotElements('sub-title');
   }
 
-  async getPreContentSlotElements() {
-    return this._slotElements('pre-content');
-  }
-
-  async getPostContentSlotElements() {
-    return this._slotElements('post-content');
-  }
-
   async getContent(number) {
     const element = await this._contentElements();
     return element[--number];

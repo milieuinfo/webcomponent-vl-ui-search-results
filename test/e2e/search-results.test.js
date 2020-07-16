@@ -31,13 +31,4 @@ describe('vl-search-results', async () => {
     await assert.eventually.equal(content.getDescription(2), 'Vlaanderen intern');
     await assert.eventually.equal(content.getValue(2), 'Werkt u bij de Vlaamse overheid...');
   });
-
-  it('als gebruiker kan ik de tekst voor en na de content van een zoekresultaat zien', async () => {
-    const searchResults = await vlSearchResultsPage.getSearchResultsText();
-    const searchResult = await searchResults.getSearchResult(1);
-    const preContentSlotElements = await searchResult.getPreContentSlotElements();
-    const postContentSlotElements = await searchResult.getPostContentSlotElements();
-    await assert.eventually.equal(preContentSlotElements[0].getText(), 'Dit is een tekst voor de lijst');
-    await assert.eventually.equal(postContentSlotElements[0].getText(), 'Dit is een tekst na de lijst');
-  });
 });
