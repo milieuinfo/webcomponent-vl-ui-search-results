@@ -13,7 +13,7 @@
 	<body>
         <vl-demo-page data-vl-webcomponent="vl-search-results" data-vl-link="https://overheid.vlaanderen.be/webuniversum/v3/documentation/components/vl-ui-search-results">
             <vl-demo data-vl-title="Search results">
-                <vl-search-results>
+                <vl-search-results id="search-results">
                     <vl-search-result>
                         <a href="#" slot="title">Vlaanderenkiest.be</a>
                         <time slot="sub-title">Maandag 22 oktober 2018</time>
@@ -23,6 +23,23 @@
                             <dt>Vlaanderen intern</dt>
                             <dd>Werkt u bij de Vlaamse overheid...</dd>
                         </dl>
+                    </vl-search-result>
+                </vl-search-results>
+            </vl-demo>
+
+            <vl-demo data-vl-title="Search result met tekst voor en na de lijst">
+                <vl-search-results id="search-results-text">
+                    <vl-search-result>
+                        <a href="#" slot="title">Vlaanderenkiest.be</a>
+                        <time slot="sub-title">Maandag 22 oktober 2018</time>
+                        <div slot="pre-content">Dit is een tekst voor de lijst</div>
+                        <dl slot="content">
+                            <dt>Vlaanderenkiest.be</dt>
+                            <dd>Verkiezingsresultaten op Vlaanderenkiest.be...</dd>
+                            <dt>Vlaanderen intern</dt>
+                            <dd>Werkt u bij de Vlaamse overheid...</dd>
+                        </dl>
+                        <div slot="post-content">Dit is een tekst na de lijst</div>
                     </vl-search-result>
                 </vl-search-results>
             </vl-demo>
