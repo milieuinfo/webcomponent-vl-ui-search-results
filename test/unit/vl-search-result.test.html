@@ -25,6 +25,18 @@
     </template>
   </test-fixture>
 
+  <test-fixture id="vl-search-results-div-fixture">
+    <template>
+      <vl-search-result>
+        <a href="#" slot="title">Vlaanderenkiest.be</a>
+        <time slot="sub-title">Maandag 22 oktober 2018</time>
+        <div slot="content">
+            <span>dit is geen dl tag</span>
+        </div>
+      </vl-search-result>
+    </template>
+  </test-fixture>
+
   <script>
     suite('vl-search-result', () => {
       const should = chai.should();
@@ -60,7 +72,7 @@
         assert.isTrue(slot.classList.contains(`${element._classPrefix}__meta-data`));
       });
 
-      test('zet de juiste classes op de content slot elementen', () => {
+      test('zet de juiste classes op de content elementen van type dl', () => {
         const element = fixture('vl-search-results-fixture');
         const div = element.shadowRoot.querySelector('div');
         const slot = div.querySelector('slot[name="content"]');
@@ -72,6 +84,15 @@
           assert.isTrue(dl.classList.contains(`${element._classPrefix}__description-list`));
           dl.querySelectorAll('dt').forEach((dt) => assert.isTrue(dt.classList.contains(`${element._classPrefix}__description-list__description`)));
         });
+      });
+
+      test('zet geen classes op content elementen die niet van het type dl zijn', () => {
+        const element = fixture('vl-search-results-fixture');
+        const div = element.shadowRoot.querySelector('div');
+        const slot = div.querySelector('slot[name="content"]');
+        const children = slot.assignedElements();
+        assert.isTrue(div.classList.contains(`${element._classPrefix}__content-group`));
+        children.forEach((element) => assert.isFalse(element.classList.contains(`${element._classPrefix}__description-list`)));
       });
     });
   </script>
