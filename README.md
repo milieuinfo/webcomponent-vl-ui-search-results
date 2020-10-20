@@ -9,7 +9,7 @@ $ npm install --save vl-ui-search-results
 ```
 
 ## API
-De [API](https://webcomponenten.omgeving.vlaanderen.be/doc/VlSearchResults.html) bevat een overzicht van de ondersteunde attributen en een beschrijving van de beschikbare functies.
+De [API](https://webcomponenten.omgeving.vlaanderen.be/doc/VlSearch-results.html) bevat een overzicht van de ondersteunde attributen en een beschrijving van de beschikbare functies.
 
 ## Demo
 De [demo](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-search-results.html) pagina bevat een overzicht van de mogelijkheden met code voorbeelden. Lokaal opstarten kan met onderstaand [NPM](https://www.npmjs.com) script.
