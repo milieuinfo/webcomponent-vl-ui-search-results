@@ -1,13 +1,16 @@
 const {VlElement} = require('vl-ui-core').Test;
 const {By} = require('vl-ui-core').Test.Setup;
+const VlSearchResultContent = require('./vl-search-result-content');
 
 class VLSearchResult extends VlElement {
-  async titleSlotElements() {
-    return this._slotElements('title');
+  async getTitle() {
+    const title = await this.findElement(By.css('.vl-search-result__title'));
+    return title.getText();
   }
 
-  async subTitleSlotElements() {
-    return this._slotElements('sub-title');
+  async getSubTitle() {
+    const title = await this.findElement(By.css('p.vl-search-result__content-group'));
+    return title.getText();
   }
 
   async getContent(number) {
@@ -16,33 +19,8 @@ class VLSearchResult extends VlElement {
   }
 
   async _contentElements() {
-    const slotElements = await this._contentSlotElements();
-    return await Promise.all(slotElements.map((element) => new VlSearchResultContent(this.driver, element)));
-  }
-
-  async _contentSlotElements() {
-    return this._slotElements('content');
-  }
-
-  async _slotElements(name) {
-    const slot = await this.shadowRoot.findElement(By.css(`slot[name="${name}"]`));
-    return this.getAssignedElements(slot);
-  }
-}
-
-class VlSearchResultContent extends VlElement {
-  async getDescription(number) {
-    return this._getElementText('dt', number);
-  }
-
-  async getValue(number) {
-    return this._getElementText('dd', number);
-  }
-
-  async _getElementText(selector, number) {
-    const element = await this.findElements(By.css(selector));
-    const vlElement = await new VlElement(this.driver, element[--number]);
-    return vlElement.getText();
+    const elements = await this.findElements(By.css('div.vl-search-result__content-group > *'));
+    return await Promise.all(elements.map((element) => new VlSearchResultContent(this.driver, element)));
   }
 }
 

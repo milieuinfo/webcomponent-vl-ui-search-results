@@ -9,9 +9,8 @@ class VLSearchResults extends VlElement {
   }
 
   async getSearchResults() {
-    const slot = await this.shadowRoot.findElement(By.css('slot'));
-    const slotElements = await this.getAssignedElements(slot);
-    return Promise.all(slotElements.map((element) => new VlSearchResult(this.driver, element)));
+    const items = await this.findElements(By.css('[is="vl-search-result"]'));
+    return Promise.all(items.map((item) => new VlSearchResult(this.driver, item)));
   }
 }
 
