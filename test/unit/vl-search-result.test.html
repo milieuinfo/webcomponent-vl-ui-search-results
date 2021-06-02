@@ -12,28 +12,34 @@
 <body>
   <test-fixture id="vl-search-results-fixture">
     <template>
-      <vl-search-result>
-        <a href="#" slot="title">Vlaanderenkiest.be</a>
-        <time slot="sub-title">Maandag 22 oktober 2018</time>
-        <dl slot="content">
+      <li is="vl-search-result">
+        <a href="#">Vlaanderenkiest.be</a>
+        <time>Maandag 22 oktober 2018</time>
+        <dl>
             <dt>Vlaanderenkiest.be</dt>
             <dd>Verkiezingsresultaten op Vlaanderenkiest.be...</dd>
             <dt>Vlaanderen intern</dt>
             <dd>Werkt u bij de Vlaamse overheid...</dd>
         </dl>
-      </vl-search-result>
+        <dl>
+            <dt>Vlaanderenkiest.be</dt>
+            <dd>Verkiezingsresultaten op Vlaanderenkiest.be...</dd>
+            <dt>Vlaanderen intern</dt>
+            <dd>Werkt u bij de Vlaamse overheid...</dd>
+        </dl>
+      </li>
     </template>
   </test-fixture>
 
   <test-fixture id="vl-search-results-div-fixture">
     <template>
-      <vl-search-result>
-        <a href="#" slot="title">Vlaanderenkiest.be</a>
-        <time slot="sub-title">Maandag 22 oktober 2018</time>
-        <div slot="content">
+      <li is="vl-search-result">
+        <a href="#">Vlaanderenkiest.be</a>
+        <time>Maandag 22 oktober 2018</time>
+        <div>
             <span>dit is geen dl tag</span>
         </div>
-      </vl-search-result>
+      </li>
     </template>
   </test-fixture>
 
@@ -41,58 +47,37 @@
     suite('vl-search-result', () => {
       const should = chai.should();
 
-      test('bevat een li element met resultaat section', () => {
-        const element = fixture('vl-search-results-fixture');
-        const li = element.shadowRoot.querySelector('li');
-        const section = li.querySelector('section');
-        should.exist(li);
-        should.exist(section);
-        assert.isTrue(section.classList.contains(`${element._classPrefix}`));
+      test('bevat een li element met section', () => {
+        const li = fixture('vl-search-results-fixture');
+        assert.isTrue(li._sectionElement.classList.contains(`${li._classPrefix}`));
       });
 
-      test('zet de juiste classes op het title slot element', () => {
-        const element = fixture('vl-search-results-fixture');
-        const h3 = element.shadowRoot.querySelector('h3');
-        const slot = h3.querySelector('slot[name="title"]');
-        const children = slot.assignedElements();
-        should.exist(h3);
-        should.exist(slot);
-        should.exist(children);
-        assert.isTrue(h3.classList.contains(`${element._classPrefix}__title`));
-        children.forEach((child) => assert.isTrue(child.classList.contains(`${element._classPrefix}__title__link`)));
+      test('zet de juiste container en classes op het titel element', () => {
+        const li = fixture('vl-search-results-fixture');
+        assert.isTrue(li._titleElement.classList.contains(`${li._classPrefix}__title`));
+        assert.isTrue(li._titleLinkElement.classList.contains(`${li._classPrefix}__title__link`));
       });
 
-      test('zet de juiste classes op het sub-title slot element', () => {
-        const element = fixture('vl-search-results-fixture');
-        const p = element.shadowRoot.querySelector('p');
-        const slot = p.querySelector('slot[name="sub-title"]');
-        should.exist(p);
-        should.exist(slot);
-        assert.isTrue(p.classList.contains(`${element._classPrefix}__content-group`));
-        assert.isTrue(slot.classList.contains(`${element._classPrefix}__meta-data`));
+      test('zet de juiste container en classes op het meta-data element', () => {
+        const li = fixture('vl-search-results-fixture');
+        assert.isTrue(li._metaDataContainerElement.classList.contains(`${li._classPrefix}__content-group`));
+        assert.isTrue(li._metaDataElement.classList.contains(`${li._classPrefix}__meta-data`));
       });
 
-      test('zet de juiste classes op de content elementen van type dl', () => {
-        const element = fixture('vl-search-results-fixture');
-        const div = element.shadowRoot.querySelector('div');
-        const slot = div.querySelector('slot[name="content"]');
-        const children = slot.assignedElements();
-        should.exist(div);
-        should.exist(slot);
-        assert.isTrue(div.classList.contains(`${element._classPrefix}__content-group`));
-        children.forEach((dl) => {
-          assert.isTrue(dl.classList.contains(`${element._classPrefix}__description-list`));
-          dl.querySelectorAll('dt').forEach((dt) => assert.isTrue(dt.classList.contains(`${element._classPrefix}__description-list__description`)));
+      test('zet de juiste container en classes op de content elementen van het type dl', () => {
+        const li = fixture('vl-search-results-fixture');
+        li._contentContainerElements.forEach((container) => container.classList.contains(`${li._classPrefix}__content-group`));
+        li._contentElements.forEach((element) => {
+          assert.isTrue(element.classList.contains(`${li._classPrefix}__description-list`));
+          element.querySelectorAll('dt').forEach((dt) => assert.isTrue(dt.classList.contains(`${li._classPrefix}__description-list__description`)));
         });
       });
 
       test('zet geen classes op content elementen die niet van het type dl zijn', () => {
-        const element = fixture('vl-search-results-fixture');
-        const div = element.shadowRoot.querySelector('div');
-        const slot = div.querySelector('slot[name="content"]');
-        const children = slot.assignedElements();
-        assert.isTrue(div.classList.contains(`${element._classPrefix}__content-group`));
-        children.forEach((element) => assert.isFalse(element.classList.contains(`${element._classPrefix}__description-list`)));
+        const li = fixture('vl-search-results-div-fixture');
+        const div = li.querySelector('div');
+        should.not.exist(li._contentContainerElement);
+        [...div.children].forEach((element) => assert.isFalse(element.classList.contains(`${li._classPrefix}__description-list`)));
       });
     });
   </script>
