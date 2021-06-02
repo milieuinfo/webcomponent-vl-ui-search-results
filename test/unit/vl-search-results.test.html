@@ -13,10 +13,10 @@
 <body>
   <test-fixture id="vl-search-results-fixture">
     <template>
-      <vl-search-results>
-        <vl-search-result></vl-search-result>
-        <vl-search-result></vl-search-result>
-      </vl-search-results>
+      <ul is="vl-search-results">
+        <li is="vl-search-result"></li>
+        <li is="vl-search-result"></li>
+      </ul>
     </template>
   </test-fixture>
 
@@ -25,12 +25,11 @@
       const should = chai.should();
 
       test('bevat een lijst element met daarin de search result elementen', () => {
-        const element = fixture('vl-search-results-fixture');
-        const ul = element.shadowRoot.querySelector('ul');
-        const elements = ul.querySelector('slot').assignedElements();
-        should.exist(ul);
-        assert.isTrue(ul.classList.contains('vl-search-results'));
-        assert.lengthOf(elements, 2);
+        const list = fixture('vl-search-results-fixture');
+        const items = list.querySelectorAll('li');
+        should.exist(list);
+        assert.isTrue(list.classList.contains('vl-search-results'));
+        assert.lengthOf(items, 2);
       });
     });
   </script>

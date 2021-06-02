@@ -9,18 +9,20 @@ describe('vl-search-results', async () => {
     return vlSearchResultsPage.load();
   });
 
+  it('WCAG', async () => {
+    await assert.eventually.isFalse(vlSearchResultsPage.hasWcagIssues());
+  });
+
   it('als gebruiker kan ik de titel van een zoekresultaat zien', async () => {
     const searchResults = await vlSearchResultsPage.getSearchResults();
     const searchResult = await searchResults.getSearchResult(1);
-    const titleSlotElements = await searchResult.titleSlotElements();
-    await assert.eventually.equal(titleSlotElements[0].getText(), 'Vlaanderenkiest.be');
+    await assert.eventually.equal(searchResult.getTitle(), 'Vlaanderenkiest.be');
   });
 
   it('als gebruiker kan ik de sub titel van een zoekresultaat zien', async () => {
     const searchResults = await vlSearchResultsPage.getSearchResults();
     const searchResult = await searchResults.getSearchResult(1);
-    const subTitleSlotElements = await searchResult.subTitleSlotElements();
-    await assert.eventually.equal(subTitleSlotElements[0].getText(), 'Maandag 22 oktober 2018');
+    await assert.eventually.equal(searchResult.getSubTitle(), 'Maandag 22 oktober 2018');
   });
 
   it('als gebruiker kan ik de content van een zoekresultaat zien', async () => {
