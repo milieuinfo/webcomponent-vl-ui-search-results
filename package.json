@@ -1,6 +1,6 @@
 {
 	"name": "vl-ui-search-results",
-	"version": "1.0.4",
+	"version": "2.0.0",
 	"description": "De zoekresultaten worden als een lijst met links getoond. Omdat er verschillende varianten zijn van zoekresultaten (publicaties, locaties, personen...) is het niet mogelijk om een uniforme layout te voorzien.",
 	"author": "DIDM",
 	"license": "MIT",
